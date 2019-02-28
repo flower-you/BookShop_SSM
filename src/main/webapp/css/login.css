@@ -1,0 +1,65 @@
+table {
+	margin: auto;
+	margin-top: 10px;
+}
+
+table tr {
+	height: 100px;
+	width: 80px;
+}
+
+table tr td {
+	padding: 10px;
+	font-size: 20px;
+}
+
+.UserInput {
+	width: 200PX;
+	height: 30PX;
+	font-size: 17px;
+	margin: 20px;
+}
+
+.btn {
+	-moz-user-select: none;
+	background-image: none;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 29px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.42857;
+	margin-top: 1px;
+	margin-bottom: 0;
+	padding: 6px 12px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	background-color: burlywood;
+	width: 200px;
+}
+
+.btn:hover:not(.active) {
+	background-color: plum;
+	/*鼠标悬浮时的颜色*/
+	color: white;
+}
+
+@font-face {
+	/* font-properties */
+	font-family: fusanghua;
+	src: url('font/扶桑花期.ttf');
+}
+
+@font-face {
+	/* font-properties */
+	font-family: cute;
+	src: url('font/cute.ttf');
+}
+
+@font-face {
+	/* font-properties */
+	font-family: CastleOctopus;
+	src: url('font/Castle Octopus.ttf');
+}

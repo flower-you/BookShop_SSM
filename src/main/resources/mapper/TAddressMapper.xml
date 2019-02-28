@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjh.dao.mapper.TAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.wjh.bean.TAddress" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="addressdetail" property="addressdetail" jdbcType="VARCHAR" />
+    <result column="zip" property="zip" jdbcType="VARCHAR" />
+    <result column="dft" property="dft" jdbcType="CHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="mktime" property="mktime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, NAME, phone, address, addressdetail, zip, dft, descr, mktime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_address
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_address
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wjh.bean.TAddress" >
+    insert into t_address (uid, NAME, phone, 
+      address, addressdetail, zip, 
+      dft, descr, mktime)
+    values (#{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{addressdetail,jdbcType=VARCHAR}, #{zip,jdbcType=VARCHAR}, 
+      #{dft,jdbcType=CHAR}, #{descr,jdbcType=VARCHAR}, #{mktime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wjh.bean.TAddress" >
+    insert into t_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="addressdetail != null" >
+        addressdetail,
+      </if>
+      <if test="zip != null" >
+        zip,
+      </if>
+      <if test="dft != null" >
+        dft,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="mktime != null" >
+        mktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressdetail != null" >
+        #{addressdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="dft != null" >
+        #{dft,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="mktime != null" >
+        #{mktime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wjh.bean.TAddress" >
+    update t_address
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="addressdetail != null" >
+        addressdetail = #{addressdetail,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        zip = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="dft != null" >
+        dft = #{dft,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=DATE},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wjh.bean.TAddress" >
+    update t_address
+    set NAME = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      addressdetail = #{addressdetail,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=VARCHAR},
+      dft = #{dft,jdbcType=CHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      mktime = #{mktime,jdbcType=DATE}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>

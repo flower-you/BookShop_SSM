@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjh.dao.mapper.TBookMapper" >
+  <resultMap id="BaseResultMap" type="com.wjh.bean.TBook" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="auth" property="auth" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="rebate" property="rebate" jdbcType="DECIMAL" />
+    <result column="stock" property="stock" jdbcType="INTEGER" />
+    <result column="publisher" property="publisher" jdbcType="VARCHAR" />
+    <result column="publishdate" property="publishdate" jdbcType="DATE" />
+    <result column="pages" property="pages" jdbcType="INTEGER" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="printtimes" property="printtimes" jdbcType="INTEGER" />
+    <result column="versions" property="versions" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="onlinetime" property="onlinetime" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.wjh.bean.TBook" extends="BaseResultMap" >
+    <result column="brief" property="brief" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, NAME, price, auth, img, rebate, stock, publisher, publishdate, pages, size, printtimes, 
+    versions, content, onlinetime
+  </sql>
+  <sql id="Blob_Column_List" >
+    brief
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_book
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectRecent" resultMap="ResultMapWithBLOBs" >
+  	select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_book order by onlinetime desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_book
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wjh.bean.TBook" >
+    insert into t_book (id, NAME, price, 
+      auth, img, rebate, 
+      stock, publisher, publishdate, 
+      pages, size, printtimes, 
+      versions, content, onlinetime, 
+      brief)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, 
+      #{auth,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{rebate,jdbcType=DECIMAL}, 
+      #{stock,jdbcType=INTEGER}, #{publisher,jdbcType=VARCHAR}, #{publishdate,jdbcType=DATE}, 
+      #{pages,jdbcType=INTEGER}, #{size,jdbcType=VARCHAR}, #{printtimes,jdbcType=INTEGER}, 
+      #{versions,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{onlinetime,jdbcType=DATE}, 
+      #{brief,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wjh.bean.TBook" >
+    insert into t_book
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="auth != null" >
+        auth,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="stock != null" >
+        stock,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="publishdate != null" >
+        publishdate,
+      </if>
+      <if test="pages != null" >
+        pages,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="printtimes != null" >
+        printtimes,
+      </if>
+      <if test="versions != null" >
+        versions,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="onlinetime != null" >
+        onlinetime,
+      </if>
+      <if test="brief != null" >
+        brief,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="auth != null" >
+        #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="pages != null" >
+        #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="printtimes != null" >
+        #{printtimes,jdbcType=INTEGER},
+      </if>
+      <if test="versions != null" >
+        #{versions,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinetime != null" >
+        #{onlinetime,jdbcType=DATE},
+      </if>
+      <if test="brief != null" >
+        #{brief,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wjh.bean.TBook" >
+    update t_book
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="auth != null" >
+        auth = #{auth,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        publishdate = #{publishdate,jdbcType=DATE},
+      </if>
+      <if test="pages != null" >
+        pages = #{pages,jdbcType=INTEGER},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="printtimes != null" >
+        printtimes = #{printtimes,jdbcType=INTEGER},
+      </if>
+      <if test="versions != null" >
+        versions = #{versions,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="onlinetime != null" >
+        onlinetime = #{onlinetime,jdbcType=DATE},
+      </if>
+      <if test="brief != null" >
+        brief = #{brief,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wjh.bean.TBook" >
+    update t_book
+    set NAME = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      auth = #{auth,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      pages = #{pages,jdbcType=INTEGER},
+      size = #{size,jdbcType=VARCHAR},
+      printtimes = #{printtimes,jdbcType=INTEGER},
+      versions = #{versions,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      onlinetime = #{onlinetime,jdbcType=DATE},
+      brief = #{brief,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wjh.bean.TBook" >
+    update t_book
+    set NAME = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      auth = #{auth,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      publishdate = #{publishdate,jdbcType=DATE},
+      pages = #{pages,jdbcType=INTEGER},
+      size = #{size,jdbcType=VARCHAR},
+      printtimes = #{printtimes,jdbcType=INTEGER},
+      versions = #{versions,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      onlinetime = #{onlinetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

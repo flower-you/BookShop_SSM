@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>底部条</title>
+	</head>
+	<style>
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			
+			font-size: medium;
+		}
+		
+		li {
+			display: inline;
+		}
+		
+		li a {
+			display: inline;
+			color: #000;
+			padding: 8px 16px;padding: 8px 16px;
+			text-decoration: none;
+		}
+		
+		li a.active {
+			background-color: yellow;
+			color: white;
+		}
+		
+		li a:hover:not(.active) {
+			background-color: darkgray;
+			/*鼠标悬浮时的颜色*/
+			color: white;
+		}
+		.bb{
+			position: relative;
+			margin: 0 45px;
+		}
+	</style>
+
+	<body>
+		<ul>
+			<li>
+				<a href="#">关于我们</a>
+			</li>&nbsp;|
+			<li>
+				<a href="#">服务协议</a>
+			</li>&nbsp;|
+			<li>
+				<a href="#contact">客服中心</a>
+			</li>&nbsp;|
+			<li>
+				<a href="#about">违规举报</a>
+			</li>&nbsp;|
+			 
+		</ul>
+		<div class=bb> 
+			copyRight &copy;2018-2018 All Rights Reserved
+			<br/>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;花花文学 版权所有&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+	</body>
+
+</html>

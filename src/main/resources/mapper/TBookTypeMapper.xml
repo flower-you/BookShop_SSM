@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjh.dao.mapper.TBookTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.wjh.bean.TBookTypeKey" >
+    <id column="bookid" property="bookid" jdbcType="INTEGER" />
+    <id column="typeid" property="typeid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.wjh.bean.TBookTypeKey" >
+    delete from t_booktype
+    where bookid = #{bookid,jdbcType=INTEGER}
+      and typeid = #{typeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wjh.bean.TBookTypeKey" >
+    insert into t_booktype (bookid, typeid)
+    values (#{bookid,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wjh.bean.TBookTypeKey" >
+    insert into t_booktype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bookid != null" >
+        bookid,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bookid != null" >
+        #{bookid,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

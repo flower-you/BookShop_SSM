@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 用于打来注解开发支持 -->
+	<!-- 添加validator="validator" 注解效验 -->
+	<mvc:annotation-driven validator="validator" />
+
+	<!-- 如果需要使用hibernate在实体类上做效验，则需要引入效验类 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"
+		p:providerClass="org.hibernate.validator.HibernateValidator" />
+
+	<!-- 打开自动组件扫描将添加了@Controller注解的类变为受管Bean -->
+	<context:component-scan base-package="com.wjh.controller">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<mvc:interceptors>
+		<!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+		<!-- <bean class="com.wjh.interceptor.LoginInterceptor"/> -->
+		
+		<!-- 配置用于跳回登录之前的页面的拦截器-->
+		<mvc:interceptor>
+			<!-- 进行拦截：/**表示拦截所有url及其子路径 -->
+			<mvc:mapping path="/**" />
+			<!-- 首页不进行拦截 -->
+			<mvc:exclude-mapping path="" />
+			<mvc:exclude-mapping path="index.jsp" />
+			<!-- 登录注册不进行拦截 -->
+			<mvc:exclude-mapping path="/toLogin" />
+			<mvc:exclude-mapping path="/login" />
+			<mvc:exclude-mapping path="/toRegist" />
+			<mvc:exclude-mapping path="/regist" />
+			
+			<!-- ajax请求的action不进行拦截 -->
+			<mvc:exclude-mapping path="/*.ajax" />
+			
+			<!-- 静态资源不进行拦截 -->
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/jslib/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/**.html"/>
+			<mvc:exclude-mapping path="/img/**"/>
+			<mvc:exclude-mapping path="/font/**"/>
+			
+			<!-- <mvc:exclude-mapping path="/*Car"/> -->
+			
+			<bean class="com.wjh.interceptor.ForwardBeforeLoginInteceptor" />
+			
+		</mvc:interceptor>
+			<!-- 防止用户未登录就对个人信息进行非法访问的拦截器 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/*Car"/>
+			<mvc:mapping path="/*Order*"/>
+			<bean class="com.wjh.interceptor.UnLoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 配置视图解析器，将方法返回的字符串转化为对应的物理地址，配置前缀，后缀，简化地址的的书写 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/content/" p:suffix=".jsp"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" />
+
+	<!-- 设置默认的处理器，用来处理静态资源 -->
+	<mvc:default-servlet-handler />
+	<!-- webapp下的静态资源,因为配置了拦截器之后静态资源无法访问  -->
+	<mvc:resources location="/static/" mapping="/static/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+
+</beans>

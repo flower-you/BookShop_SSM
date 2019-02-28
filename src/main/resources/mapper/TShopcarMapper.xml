@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wjh.dao.mapper.TShopcarMapper">
+    <resultMap id="BaseResultMap" type="com.wjh.bean.TShopcar">
+        <result column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="bid" property="bid" jdbcType="INTEGER"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="CarShopMap" type="com.wjh.bean.TShopcar">
+        <result column="bid" property="bid" jdbcType="INTEGER"/>
+        <result column="bid_count" property="num" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+		uid,bid,num,status,update_time,create_time
+	</sql>
+    <insert id="insert" parameterType="com.wjh.bean.TShopcar">
+    insert into t_shopcar (uid, bid, num, 
+      status, create_time, update_time
+      )
+    values (#{uid,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.wjh.bean.TShopcar">
+        insert into t_shopcar
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                uid,
+            </if>
+            <if test="bid != null">
+                bid,
+            </if>
+            <if test="num != null">
+                num,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid,jdbcType=INTEGER},
+            </if>
+            <if test="bid != null">
+                #{bid,jdbcType=INTEGER},
+            </if>
+            <if test="num != null">
+                #{num,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <!--  select T.uid,T.bid,sum(T.num) as bid_count,T.status,T.update_time,T.create_time from
+    (select uid,bid,num,status,update_time,create_time from t_shopcar where uid=9) as T group by bid order by update_time;
+    -->
+    <select id="selectCarByUid" resultMap="CarShopMap" parameterType="java.lang.Integer">
+        select T.uid,T.bid,sum(T.num) as bid_count,T.`status`,T.update_time,T.create_time from
+        (select uid,bid,num,`status`,update_time,create_time from t_shopcar where uid = #{uid,jdbcType=INTEGER})
+        as T group by bid order by update_time desc
+    </select>
+
+    <select id="selectSelective" resultMap="BaseResultMap" parameterType="com.wjh.bean.TShopcar">
+        select <include refid="Base_Column_List" />
+        from t_shopcar
+        where
+        <trim suffixOverrides="and">
+            <if test="uid != null">
+                uid = #{uid,jdbcType=INTEGER} and
+            </if>
+            <if test="bid != null">
+                bid = #{bid,jdbcType=INTEGER} and
+            </if>
+        </trim>
+    </select>
+
+    <update id="updateNum" parameterType="com.wjh.bean.TShopcar">
+        update t_shopcar set num=#{num,jdbcType=INTEGER} where uid= #{uid,jdbcType=INTEGER} and bid= #{bid,jdbcType=INTEGER}
+    </update>
+
+</mapper>

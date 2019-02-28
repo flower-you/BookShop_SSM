@@ -1,0 +1,67 @@
+  *{
+                margin:0;
+                padding:0;
+            }
+            html,body{
+                width:100%;
+                height:100%;
+            }
+            .pwdcheck {
+                margin:50px auto;
+                width:700px;
+                height:50px;
+            }
+            .pwdcheck p.pwdInput input.pwd{
+                width:150px;
+                height:20px;
+            }
+            .pwdcheck p.pwdInput label {
+                font-size:12px;
+            }
+            .pwdcheck p.pwdInput label.tips{
+                color:red;
+            }
+            .pwdcheck p.pwdInput label span {
+                color:#f00;
+                padding:0 5px;
+            }
+            .pwdcheck p.pwdColor {
+                width:150px;
+                height:5px;
+                margin-top:6px;
+                margin-left:53px;
+            }
+            .pwdcheck p.pwdColor span {
+                display:inline-block;
+                width:40px;
+                height:4px;
+                float:left;
+                margin-right:10px;
+                background:#ccc;
+            }
+
+            .pwdcheck p.pwdText {
+                margin-left:60px;
+            }
+            .pwdcheck p.pwdText span{
+                margin-right:20px;
+                margin-left:10px;
+                font-size:12px;
+                color:#ddd;
+            }
+
+            /* 密码强度改变的样式 */
+
+            .pwdcheck p.pwdColor span.co1 {
+                background:#f00;
+            }
+            .pwdcheck p.pwdColor span.co2 {
+                background:#00ff66;
+            }
+
+            .pwdcheck p.pwdColor span.co3 {
+                background:#0033cc;
+            }
+
+
+

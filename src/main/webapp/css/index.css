@@ -1,0 +1,168 @@
+#body {
+	width: 100%;
+	border: 2px solid red;
+	background: url(../img/timg.gif) no-repeat;
+	/* 背景图垂直、水平均居中 */
+	background-position: center center;
+	/* 让背景图基于容器大小伸缩 */
+	background-size: cover;
+	overflow: hidden;
+}
+
+#main {
+	position: relative;
+	width: 100%;
+	height: 1400px;
+	border: 5px solid palevioletred;
+	overflow: hidden;
+}
+
+#foot {
+	position: relative;
+	width: 100%;
+	height: 150px;
+	border: 2px solid #DEB887;
+}
+
+#left {
+	position: relative;
+	width: 20.0%;
+	height: 1394px;
+	/**/
+	border: 1px solid #7FFF00;
+	float: left;
+	margin-top: 0px;
+}
+
+#leftTop {
+	position: relative;
+	width: 100%;
+	height: 694px;
+	border: 1px solid #7FFF00;
+}
+
+#leftBottom {
+	position: relative;
+	width: 100%;
+	height: 694px;
+	border: 1px solid #7FFF00;
+}
+
+#right {
+	position: relative;
+	width: 79.6%;
+	height: 1394px;
+	border: 1px solid skyblue;
+	float: right;
+	overflow: hidden;
+}
+
+#top {
+	position: relative;
+	width: 100%;
+	height: 290px;
+	border: 2px solid #FF0000;
+	overflow: hidden;
+}
+
+
+/*top和bottom的width所占的比例指的是相对于main这个div所占的比例
+			 向width,height的比例和大小都是相对于它的父容器来说的。
+			 * */
+
+#middle {
+	position: relative;
+	width: 100%;
+	height: 548px;
+	border: 1px solid darkcyan;
+}
+
+#bottom {
+	position: relative;
+	width: 100%;
+	height: 548px;
+	border: 1px solid darkcyan;
+}
+
+#bottomP {
+	font: "微软雅黑";
+	font-size: 4;
+}
+
+#header {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	border: 1px solid blue;
+}
+
+#headerRight {
+	position: relative;
+	width: 30%;
+	height: 46px;
+	border: 1px solid rosybrown;
+	float: right;
+	margin: 0px 0px;
+}
+
+#headerLeft {
+	position: relative;
+	width: 18%;
+	height: 46px;
+	float: left;
+	margin: -5px 8px;
+}
+
+#serach {
+	position: relative;
+	width: 35%;
+	height: 100px;
+	margin: 80px 460px;
+}
+
+#serachText {
+	width: 240px;
+	height: 40px;
+	border: 1px solid rosybrown;
+	margin: 10px 30px;
+	font-size: 15px;
+}
+
+#submit {
+	width: 56px;
+	height: 40px;
+	/*background: url(img/serach.png) no-repeat scroll top left;*/
+	background-color: pink;
+	font-size: 15px;
+}
+
+.shopName {
+	font-family: fusanghua;
+	font-style: oblique;
+	font-size: 39px;
+	font-weight: 900;
+	color: brown;
+}
+
+.bbb {
+	margin: 20px 700px 550px;
+}
+
+@font-face {
+	/* font-properties */
+	font-family: fusanghua;
+	src: url(../font/扶桑花期.ttf);
+}
+
+.listTitle {
+	font: "微软雅黑";
+	font-style: oblique;
+	font-size: 29px;
+	color: coral;
+	margin: 0px 620px;
+}
+
+.mhr {
+	margin-left: 1380px;
+	margin-bottom: 20px;
+}

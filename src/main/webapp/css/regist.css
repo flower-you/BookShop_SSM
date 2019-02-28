@@ -1,0 +1,119 @@
+body {
+	width: 100%;
+	height: 1000px;
+	border: 2px solid red;
+	
+}
+
+
+table {
+	margin: auto;
+	margin-top: 10px;
+}
+
+table tr {
+	height: 80px;
+}
+
+table tr td {
+	padding: 15px;
+	font-size: 14px;
+}
+
+table tr th {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+.font {
+	color: #555555;
+}
+
+.templatemo-bg-gray {
+	background: url(../img/拾光相册.jpg) no-repeat;
+	background-size: 100% 100%;
+	/*设置图片铺面整个容器的大小*/
+	overflow: hidden;
+	/* background-color: #EEEEEE; */
+	/*background-color: #DDF2F1;*/
+	color: #333;
+}
+
+.templatemo-container {
+	background-color: rgba(255, 255, 255, 0.8);
+	border: 1px solid #DEDEDE;
+	border-radius: 8px;
+	padding: 30px;
+	width: 500px;
+}
+
+.btn {
+	-moz-user-select: none;
+	background-image: none;
+	border: 1px solid rgba(0, 0, 0, 0);
+	border-radius: 4px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.42857;
+	margin-bottom: 0;
+	padding: 6px 12px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	background-color: #5BC0DE;
+	color: #FFFFFF;
+}
+
+.form-control {
+	background-color: #FFFFFF;
+	background-image: none;
+	border: 1px solid #CCCCCC;
+	border-radius: 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	color: #555555;
+	display: block;
+	font-size: 14px;
+	height: 34px;
+	line-height: 1.42857;
+	padding: 6px 12px;
+	transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+	width: 100%;
+	margin-top: 2px;
+}
+
+h1 {
+	font-size: 36px;
+	font-weight: 300;
+	line-height: normal;
+	text-align: center;
+	color: #4AA4B4;
+	width: 700px;
+}
+
+h2 {
+	color: #BFBFBF;
+	cursor: pointer;
+	font-weight: 300;
+}
+
+select {
+	padding: 6px 12px;
+}
+
+a {
+	color: #333;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+#mess {
+	color: red;
+}
+
+.line {
+	border-top: 1px solid #DDDDDD;
+	text-align: left;
+	padding-bottom: 5px;
+}
