@@ -44,8 +44,6 @@ public class ForwardBeforeLoginInteceptor implements HandlerInterceptor {
 		    		query="?"+query;
 		    	}
 
-
-
 		    	String beforePath = path+query;
 		    	System.out.println(beforePath+"=====method"+request.getMethod());//测试用
 		    	session.setAttribute("beforePath", beforePath);

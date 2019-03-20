@@ -21,6 +21,13 @@
 		from t_user
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+	<select id="selectByUserName" resultMap="BaseResultMap"
+			parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where username = #{username,jdbcType=VARCHAR}
+	</select>
 	<select id="selectSelective" resultMap="BaseResultMap"
 		parameterType="com.wjh.bean.TUser">
 		select

@@ -1,6 +1,7 @@
 package com.wjh.controller;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wjh.util.MyMD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,26 +61,30 @@ public class UserController {
 		TUser user=userv.login(tuser);
 //		System.out.println("user"+user);
 		System.out.println("request.getContextPath()"+request.getContextPath());
-		if(user!=null) {
-			model.addAttribute("user",user);
-			String beforePath=(String)request.getSession().getAttribute("beforePath");
-			System.out.println("before path"+beforePath);
-			String method=(String)request.getSession().getAttribute("method");
-			if(beforePath!=null) {
-				//请求转发默认使用的是post方式，不支持get方式
-				if("POST".equals(method)) {
-					request.getRequestDispatcher(beforePath).forward(request, response);
+		try {
+			if(user!=null&&MyMD5Util.validPassword(tuser.getPassword(),user.getPassword())) {
+				model.addAttribute("user",user);
+				String beforePath=(String)request.getSession().getAttribute("beforePath");
+				System.out.println("before path"+beforePath);
+				String method=(String)request.getSession().getAttribute("method");
+				if(beforePath!=null) {
+					//请求转发默认使用的是post方式，不支持get方式
+					if("POST".equals(method)) {
+						request.getRequestDispatcher(beforePath).forward(request, response);
+					}
+					//如果是GET方式，就使用重定向，重定向默认使用的是GET方式。request.getContextPath()获得项目地址BookShopSSM/
+					else {
+						response.sendRedirect(request.getContextPath()+beforePath);
+					}
+
 				}
-				//如果是GET方式，就使用重定向，重定向默认使用的是GET方式。request.getContextPath()获得项目地址BookShopSSM/
-				else {
-					response.sendRedirect(request.getContextPath()+beforePath);
-				}
-				
+				return "user/afterLogin";
 			}
-			return "user/afterLogin";
-		}
-		else {
-			model.addAttribute("msg", "用户名或密码错误！");
+			else {
+				model.addAttribute("msg", "用户名或密码错误！");
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
 		return "user/login";
 	}

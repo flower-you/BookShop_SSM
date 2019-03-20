@@ -17,7 +17,7 @@ public class UserServiceImpl implements IUserService {
 	private TUserMapper usermapper;
 
 	public TUser login(TUser tuser) {
-		 return usermapper.selectSelective(tuser);
+		 return usermapper.selectByUserName(tuser.getUsername());
 
 	}
 

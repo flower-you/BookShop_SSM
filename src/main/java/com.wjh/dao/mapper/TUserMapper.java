@@ -13,6 +13,8 @@ public interface TUserMapper {
 
     TUser selectByPrimaryKey(Integer id);
 
+    TUser selectByUserName(String username);
+
     int updateByPrimaryKeySelective(TUser record);
 
     int updateByPrimaryKey(TUser record);
